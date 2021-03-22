@@ -1,0 +1,21 @@
+.MainContainer {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    align-items: center;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+img.userGistImage {
+    width: 50px;
+    vertical-align: middle;
+}
+
+span.eachFileType {
+    float: left;
+}
