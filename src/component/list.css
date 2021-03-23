@@ -1,8 +1,35 @@
+div#root {
+    margin: 40px;
+}
+
 .MainContainer {
     display: grid;
     grid-template-columns: 15% 70% 15%;
     align-items: center;
 }
+
+/*
+    searchfield
+*/
+button.searchButton {
+    color: black;
+    padding: 6px 26px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+input.searchBoxUsername {
+    padding: 7px 7px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+/*
+    displaylist
+*/
 
 .grid-item {
     background-color: rgba(255, 255, 255, 0.8);
@@ -16,6 +43,17 @@ img.userGistImage {
     vertical-align: middle;
 }
 
-span.eachFileType {
-    float: left;
+.eachFork {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.fileSection {
+    display: grid;
+    grid-template-columns: 10% 80%;
+}
+
+.userNameLeft {
+    display: grid;
+    grid-template-columns: 30% 70%;
 }
