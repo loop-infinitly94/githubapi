@@ -302,7 +302,7 @@ class Main extends Component {
     }
 
     onSearchClicked(userName) {
-        this.setState({showSpinner: true})
+        this.setState({showSpinner: true, userGistList: [], perGistsFork: [], mappedUserGist: {}})
         GET_UsersGists(this.callBackUserGistList.bind(this), userName)
     }
 
