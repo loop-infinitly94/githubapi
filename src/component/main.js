@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchAndFilterData from './searchandfilterdata';
 import DisplayList from './displaylist';
 import { GET_UsersGists, GET_UserForks } from "../api/gistsapi";
-
+import Loader from "../assets/images/loader.gif";
 /*
     temporary forkData
 */
@@ -296,15 +296,19 @@ class Main extends Component {
         this.state = {
             userGistList: [],
             perGistsFork: [],
-            mappedUserGist: {}
+            mappedUserGist: {},
+            showSpinner: false
         }
     }
 
     onSearchClicked(userName) {
+        this.setState({showSpinner: true})
         GET_UsersGists(this.callBackUserGistList.bind(this), userName)
     }
 
     callBackUserGistList(responseData) {
+        this.setState({showSpinner: false})
+
         if (responseData.status === 200) {
             this.setState({ userGistList: responseData.data })
             const mappedUserGist = this.mapUserGist()
@@ -341,6 +345,8 @@ class Main extends Component {
     */
 
     async getUserForks(mappedUserGist) {
+        this.setState({showSpinner: true})
+
         const getAllUsersForks = new Promise((resolve, reject) => {
             var forPromiseList = []
             mappedUserGist.forEach(async (eachUserGist, index) => {
@@ -359,7 +365,9 @@ class Main extends Component {
         })
 
         const gistForks = await getAllUsersForks;
+
         this.setState({
+            showSpinner: false,
             perGistsFork: gistForks
         })
     }
@@ -377,7 +385,8 @@ class Main extends Component {
 
     render() {
         return (
-            <div>
+            <div className = "mainOuter">
+                {this.state.showSpinner ? <div className = "overlay"><img alt = "loader" className = "loaderImage" src = {Loader}/></div> : null}
                 <SearchAndFilterData onSearchClickedProp={this.onSearchClicked.bind(this)} />
                 {this.state.mappedUserGist.length > 0 ? <DisplayList userGistList={this.state.mappedUserGist} perGistsFork={this.state.perGistsFork} /> : "No Data Load"}
             </div>
