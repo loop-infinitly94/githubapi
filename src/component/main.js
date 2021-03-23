@@ -301,14 +301,18 @@ class Main extends Component {
         }
     }
 
-    onSearchClicked(userName) {
+    /*
+        search for user gists using async await
+    */
+
+    async onSearchClicked(userName) {
         this.setState({showSpinner: true, userGistList: [], perGistsFork: [], mappedUserGist: {}})
-        GET_UsersGists(this.callBackUserGistList.bind(this), userName)
+        const getUSerGists = await GET_UsersGists(userName)
+        this.callBackUserGistList(getUSerGists)
     }
 
     callBackUserGistList(responseData) {
         this.setState({showSpinner: false})
-
         if (responseData.status === 200) {
             this.setState({ userGistList: responseData.data })
             const mappedUserGist = this.mapUserGist()
@@ -342,6 +346,7 @@ class Main extends Component {
 
     /*
         serialized request for forks for each each gists
+        using callback and promise
     */
 
     async getUserForks(mappedUserGist) {

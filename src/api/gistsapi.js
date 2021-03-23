@@ -1,23 +1,24 @@
 import {getUrl} from './mainclient';
 import axios from 'axios';
 
-const GET_UsersGists = (callback, userName) => {
+const GET_UsersGists = (userName) => {
     try {
         const config = {
             url: getUrl(["users", userName, "gists"]),
             method: 'get',
         }
-        return axios.request(config)
+        return new Promise((resolve, reject) => {
+            axios.request(config)
             .then(function (response) {
-                callback(response);
+                resolve(response);
             })
             .catch(function (err) {
-                callback(err);
+                reject(err);
             })
-
+        })
     }
     catch (e) {
-        callback(e); // pass exception object to err handler
+        console.log(e); // pass exception object to err handler
     }
 }
 
