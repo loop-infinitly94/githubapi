@@ -290,7 +290,7 @@ const forkListttt = [
     }
 ]
 
-class Main extends Component {
+class Main extends Component { 
     constructor(props) {
         super(props);
         this.state = {
@@ -308,10 +308,11 @@ class Main extends Component {
     async onSearchClicked(userName) {
         this.setState({showSpinner: true, userGistList: [], perGistsFork: [], mappedUserGist: {}})
         const getUSerGists = await GET_UsersGists(userName)
-        this.callBackUserGistList(getUSerGists)
+        this.callBackUserGistList(getUSerGists) 
     }
 
     callBackUserGistList(responseData) {
+        console.log(responseData)
         this.setState({showSpinner: false})
         if (responseData.status === 200) {
             this.setState({ userGistList: responseData.data })

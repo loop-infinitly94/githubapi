@@ -13,7 +13,7 @@ const GET_UsersGists = (userName) => {
                 resolve(response);
             })
             .catch(function (err) {
-                reject(err);
+                resolve(err);
             })
         })
     }
