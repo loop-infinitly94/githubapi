@@ -51,7 +51,7 @@ function DisplayList(props) {
                                 {eachGistForDetails && eachGistForDetails.length > 0 ? <span className="userName">{key}</span> : null}
                                 {
                                     eachGistForDetails && eachGistForDetails.length > 0 && eachGistForDetails.map((data, idx) => {
-                                        return <div className="eachFork">
+                                        return <div key = {"eachFork"+idx} className="eachFork">
 
                                             <img alt="userimage" src={data.owner.avatar_url === "" ? UserIcon : data.owner.avatar_url} className="userGistImage" />
                                             <span className="userName">{data.owner.login}</span>
